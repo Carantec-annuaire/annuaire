@@ -13,9 +13,8 @@ Le but de cette application est de fournir un annuaire au service Jeunesse de Ca
 
 ## Pour commencer
 
-Vérifier la présence de npm : npm -v
-Installer les dépendances : npm i
-Lancer l'application : npm run dev
-
-Mettre en place les variables d'environnements
+- Vérifier la présence de npm : [npm -v]
+- Installer les dépendances : [npm i]
+- Lancer l'application : [npm run dev]
+- Mettre en place les variables d'environnements
 
