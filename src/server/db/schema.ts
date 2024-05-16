@@ -24,16 +24,9 @@ export const contact = createTable(
   "contact",
   {
     id: varchar("id", { length: 255 }).notNull().primaryKey(),
-    photo: varchar("phto", { length: 256 }),
-    nom: varchar("nom", { length: 256 })
-      .notNull(),
-    prenom: varchar("prenom", { length: 256 })
-      .notNull(),
-    isActive: boolean("is_active")
-      .default(true),
-    dateNotActive: timestamp("date_not_active", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
+    photo: varchar("photo", { length: 256 }),
+    nom: varchar("nom", { length: 256 }).notNull(),
+    prenom: varchar("prenom", { length: 256 }).notNull(),
     mail: varchar("mail", { length: 256 }),
     mobile: varchar("mobile", { length: 256 }),
     fixe: varchar("fixe", { length: 256 }),
@@ -42,22 +35,14 @@ export const contact = createTable(
   }
 );
 
-
 export const structure = createTable(
   "structure",
   {
     id: varchar("id", { length: 255 }).notNull().primaryKey(),
-    photo: varchar("phto", { length: 256 }),
-    ville: varchar("ville", { length: 256 })
-      .notNull(),
-    nom: varchar("nom", { length: 256 })
-      .notNull(),
-    rangeAge: varchar("range_age", { length: 256 }),
-    isActive: boolean("is_active")
-      .default(true),
-    dateNotActive: timestamp("date_not_active", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
+    photo: varchar("photo", { length: 256 }),
+    ville: varchar("ville", { length: 256 }).notNull(),
+    nom: varchar("nom", { length: 256 }).notNull(),
+    range_age: varchar("range_age", { length: 256 }),
     description: varchar("description", { length: 256 }),
     mail: varchar("mail", { length: 256 }),
     telephone: varchar("telephone", { length: 256 }),
@@ -69,12 +54,10 @@ export const activite = createTable(
   "activite",
   {
     id: varchar("id", { length: 255 }).primaryKey(),
-    nom: varchar("nom", { length: 256 })
-      .notNull(),
+    nom: varchar("nom", { length: 256 }).notNull(),
     logo: varchar("logo", { length: 256 }),
     activite: varchar("activite", { length: 256 }),
-    ville: varchar("ville", { length: 256 })
-      .notNull(),
+    ville: varchar("ville", { length: 256 }).notNull(),
     domaine: varchar("domaine", { length: 256 }),
     site: varchar("site", { length: 256 }),
     mail: varchar("mail", { length: 256 }),
@@ -89,17 +72,11 @@ export const partenaire = createTable(
   {
     id: varchar("id", { length: 255 }).primaryKey(),
     logo: varchar("logo", { length: 256 }),
-    nom: varchar("nom", { length: 256 })
-      .notNull(),
+    nom: varchar("nom", { length: 256 }).notNull(),
     nomDetails: varchar("nom_details", { length: 256 }),
     contact: varchar("contact", { length: 256 }),
     mail: varchar("mail", { length: 256 }),
     telephone: varchar("telephone", { length: 256 }),
-    isActive: boolean("is_active")
-      .default(true),
-    dateNotActive: timestamp("date_not_active", { withTimezone: true })
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
     site: varchar("site", { length: 256 }),
     champsAction: varchar("champs_action", { length: 256 }),
     adresse: varchar("adresse", { length: 256 }),
@@ -114,11 +91,12 @@ export const appartient = createTable(
       .references(() => contact.id),
     structureId: varchar("structure_id", { length: 255 })
       .notNull()
-      .references(() => contact.id),
+      .references(() => structure.id),
     isRespo: boolean("is_respo").default(false),
   }, (table) => ({
     pk: primaryKey(table.contactId, table.structureId)
-  }));
+  })
+);
 
 export const contactRelations = relations(contact, ({ many }) => ({
   appartient: many(appartient),
@@ -138,6 +116,7 @@ export const appartientRelations = relations(appartient, ({ one }) => ({
     references: [structure.id]
   }),
 }));
+
 
 export const posts = createTable(
   "post",
