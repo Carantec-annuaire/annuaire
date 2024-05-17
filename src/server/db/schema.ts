@@ -62,7 +62,7 @@ export const activite = createTable(
     site: varchar("site", { length: 256 }),
     mail: varchar("mail", { length: 256 }),
     telephone: varchar("telephone", { length: 256 }),
-    commentaire: varchar("commentaire", { length: 256 }),
+    commentaire: varchar("commentaire", { length: 1280 }),
     adresse: varchar("adresse", { length: 256 }),
   }
 );
@@ -78,7 +78,7 @@ export const partenaire = createTable(
     mail: varchar("mail", { length: 256 }),
     telephone: varchar("telephone", { length: 256 }),
     site: varchar("site", { length: 256 }),
-    champsAction: varchar("champs_action", { length: 256 }),
+    champsAction: varchar("champs_action", { length: 1280 }),
     adresse: varchar("adresse", { length: 256 }),
   }
 );
