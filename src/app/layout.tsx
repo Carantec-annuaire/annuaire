@@ -18,35 +18,67 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="bg-slate-100">
         <nav className="flex flex-row justify-center gap-x-4 p-2 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]">
-          <Link
-            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
-            href=""
-          >
-            test
+          <Link className="flex flex-row items-center " href="">
+            <img
+              src="/dribbble.svg"
+              alt="Home"
+              className=" h-10 w-10" // Using Tailwind for sizing
+            />
           </Link>
           <Link
-            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            className="flex flex-row items-center rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
             href=""
           >
-            test
+            <img
+              src="/users.svg"
+              alt="Home"
+              className="mr-2 h-4 w-4" // Using Tailwind for sizing
+            />
+            Contacts
           </Link>
           <Link
-            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            className="flex flex-row items-center rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
             href=""
           >
-            test
+            <img
+              src="/home.svg"
+              alt="Home"
+              className="mr-2 h-4 w-4" // Using Tailwind for sizing
+            />
+            Structures
           </Link>
           <Link
-            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            className="flex flex-row items-center rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
             href=""
           >
-            test
+            <img
+              src="/heart-handshake.svg"
+              alt="Home"
+              className="mr-2 h-4 w-4" // Using Tailwind for sizing
+            />
+            Partenaires
           </Link>
           <Link
-            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            className="flex flex-row items-center rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
             href=""
           >
-            test
+            <img
+              src="/star.svg"
+              alt="Home"
+              className="mr-2 h-4 w-4" // Using Tailwind for sizing
+            />
+            Activités
+          </Link>
+          <Link
+            className="flex flex-row items-center rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            <img
+              src="/map.svg"
+              alt="Home"
+              className="mr-2 h-4 w-4" // Using Tailwind for sizing
+            />
+            Carte
           </Link>
         </nav>
         <main>{children}</main>

@@ -1,5 +1,9 @@
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  return <>test</>;
+  // Redirect to /contact
+  redirect("/contact");
+
+  // This return is just a placeholder and will not be rendered
+  return null;
 }
