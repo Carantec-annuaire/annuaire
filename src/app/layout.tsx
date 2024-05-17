@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import Link from "next/link";
 
 export const metadata = {
   title: "Create T3 App",
@@ -15,7 +16,41 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body className="bg-slate-100">
+        <nav className="flex flex-row justify-center gap-x-4 p-2 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]">
+          <Link
+            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            test
+          </Link>
+          <Link
+            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            test
+          </Link>
+          <Link
+            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            test
+          </Link>
+          <Link
+            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            test
+          </Link>
+          <Link
+            className="rounded bg-slate-200 px-4 py-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]"
+            href=""
+          >
+            test
+          </Link>
+        </nav>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

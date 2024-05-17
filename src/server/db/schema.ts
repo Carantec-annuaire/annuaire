@@ -86,37 +86,18 @@ export const partenaire = createTable(
 export const appartient = createTable(
   "appartient",
   {
-    contactId: varchar("contact_id", { length: 255 })
+    contact_id: varchar("contact_id", { length: 255 })
       .notNull()
-      .references(() => contact.id),
-    structureId: varchar("structure_id", { length: 255 })
+      .references(() => contact.id, { onDelete: "cascade" }),
+    structure_id: varchar("structure_id", { length: 255 })
       .notNull()
-      .references(() => structure.id),
-    isRespo: boolean("is_respo").default(false),
-  }, (table) => ({
-    pk: primaryKey(table.contactId, table.structureId)
+      .references(() => structure.id, { onDelete: "cascade" }),
+    is_respo: boolean("is_respo").notNull(),
+  },
+  (table) => ({
+    primaryKey: [table.contact_id, table.structure_id],
   })
 );
-
-export const contactRelations = relations(contact, ({ many }) => ({
-  appartient: many(appartient),
-}));
-
-export const structureRelations = relations(structure, ({ many }) => ({
-  appartient: many(appartient),
-}));
-
-export const appartientRelations = relations(appartient, ({ one }) => ({
-  contact: one(contact, {
-    fields: [appartient.contactId],
-    references: [contact.id]
-  }),
-  structure: one(structure, {
-    fields: [appartient.structureId],
-    references: [structure.id]
-  }),
-}));
-
 
 export const posts = createTable(
   "post",
@@ -220,3 +201,37 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
+
+// export const appartient = createTable(
+//   "appartient",
+//   {
+//     contactId: varchar("contact_id", { length: 255 })
+//       .notNull()
+//       .references(() => contact.id),
+//     structureId: varchar("structure_id", { length: 255 })
+//       .notNull()
+//       .references(() => structure.id),
+//     isRespo: boolean("is_respo").default(false),
+//   }, (table) => ({
+//     pk: primaryKey({ columns: [table.contactId, table.structureId]})
+//   })
+// );
+
+// export const contactRelations = relations(contact, ({ many }) => ({
+//   appartient: many(appartient),
+// }));
+
+// export const structureRelations = relations(structure, ({ many }) => ({
+//   appartient: many(appartient),
+// }));
+
+// export const appartientRelations = relations(appartient, ({ one }) => ({
+//   contact: one(contact, {
+//     fields: [appartient.contactId],
+//     references: [contact.id]
+//   }),
+//   structure: one(structure, {
+//     fields: [appartient.structureId],
+//     references: [structure.id]
+//   }),
+// }));
