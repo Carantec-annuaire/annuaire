@@ -1,9 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
-export default function navlink({
+export default function Navlink({
   text,
   href,
   iconsrc,

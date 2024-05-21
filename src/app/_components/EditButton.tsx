@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Pen, Plus } from "lucide-react";
+import { Pen } from "lucide-react";
 
 const EditButton = ({ path }: { path: string }) => {
   const router = useRouter();
