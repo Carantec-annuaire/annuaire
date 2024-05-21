@@ -2,6 +2,6 @@
 
 import React from "react";
 
-export default function ContactPage() {
-  return <div className="">test</div>;
+export default function StructurePage() {
+  return <div className="">🚧 Page [Structures] en cours de construction 🚧</div>;
 }
