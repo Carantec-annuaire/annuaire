@@ -8,6 +8,7 @@ export default async function AddContact() {
         }}
       >
         <div>
+          <label></label>
           <input type="file" name="photo" />
         </div>
         <input type="text" name="prenom" placeholder="Prénom" />

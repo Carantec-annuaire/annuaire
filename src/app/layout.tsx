@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import Link from "next/link";
-import Navlink from "./_components/navlink";
+import Navlink from "./_components/Navlink";
 
 export const metadata = {
   title: "annuaire",
