@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "./db";
-import { contact } from "./db/schema";
+import { activite, contact } from "./db/schema";
 import { eq } from "drizzle-orm";
 
 export async function getContacts() {
@@ -17,6 +17,29 @@ export async function getContactById(id: string) {
     if (contact.photo !== null) {
       const regex = /\/d\/([a-zA-Z0-9_-]+)/;
       const match = contact.photo.match(regex);
+      if (match && match[1]) {
+        return "https://lh3.googleusercontent.com/d/" + match[1];
+      }
+    }
+    return "/placeholder.svg";
+  }
+  return res2;
+}
+
+export async function getActivites() {
+  const activites = await db.query.activite.findMany();
+  return activites;
+}
+
+export async function getActiviteById(id: string) {
+  const res = await db.query.activite.findFirst({ where: eq(activite.id, id) });
+  //console.log(typeof res)
+  const res2 = { ...res, logo: getLogo(res) };
+
+  function getLogo(activite: any) {
+    if (activite.logo !== null) {
+      const regex = /\/d\/([a-zA-Z0-9_-]+)/;
+      const match = activite.logo.match(regex);
       if (match && match[1]) {
         return "https://lh3.googleusercontent.com/d/" + match[1];
       }
