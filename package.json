@@ -18,6 +18,7 @@
     "@trpc/client": "next",
     "@trpc/react-query": "next",
     "@trpc/server": "next",
+    "@vercel/blob": "^0.23.2",
     "@vercel/postgres": "^0.8.0",
     "axios": "^1.7.1",
     "drizzle-orm": "^0.29.4",

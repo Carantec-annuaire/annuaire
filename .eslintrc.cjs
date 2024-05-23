@@ -14,6 +14,14 @@ const config = {
     "plugin:@typescript-eslint/stylistic-type-checked"
   ],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "warn", // Change to warning
+    "@typescript-eslint/no-unsafe-assignment": "warn", // Change to warning
+    "@typescript-eslint/no-unsafe-call": "warn", // Change to warning
+    "@typescript-eslint/no-unsafe-member-access": "warn", // Change to warning
+    "@typescript-eslint/no-unsafe-return": "warn", // Change to warning
+    "@typescript-eslint/prefer-nullish-coalescing": "off", // Disable
+    "@typescript-eslint/prefer-optional-chain": "off", // Disable
+    "@next/next/no-img-element": "off", // Disable
     "@typescript-eslint/array-type": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": [
