@@ -1,6 +1,6 @@
 import "server-only";
 import { db } from "./db";
-import { activite, contact } from "./db/schema";
+import { activite, contact, structure } from "./db/schema";
 import { eq } from "drizzle-orm";
 
 export async function getContacts() {
@@ -40,6 +40,29 @@ export async function getActiviteById(id: string) {
     if (activite.logo !== null) {
       const regex = /\/d\/([a-zA-Z0-9_-]+)/;
       const match = activite.logo.match(regex);
+      if (match && match[1]) {
+        return "https://lh3.googleusercontent.com/d/" + match[1];
+      }
+    }
+    return "/placeholder.svg";
+  }
+  return res2;
+}
+
+export async function getStructures() {
+  const structures = await db.query.structure.findMany();
+  return structures;
+}
+
+export async function getStructureById(id: string) {
+  const res = await db.query.structure.findFirst({ where: eq(structure.id, id) });
+  //console.log(typeof res)
+  const res2 = { ...res, photo: getPhoto(res) };
+
+  function getPhoto(structure: any) {
+    if (structure.photo !== null) {
+      const regex = /\/d\/([a-zA-Z0-9_-]+)/;
+      const match = structure.photo.match(regex);
       if (match && match[1]) {
         return "https://lh3.googleusercontent.com/d/" + match[1];
       }
