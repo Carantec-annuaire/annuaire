@@ -27,7 +27,7 @@ export default async function Page({
         <h1 className="text-center text-2xl font-bold ">
           {contact.prenom + " " + contact.nom}
         </h1>
-        <EditButton path={"/contact/" + id} />
+        <EditButton path={"/contact/edit/" + id} />
       </div>
 
       <div className="flex flex-col items-start gap-y-1 p-2">

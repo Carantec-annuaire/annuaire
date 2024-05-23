@@ -16,6 +16,7 @@ export default function FormContact({
     fixe: "",
     photo: "",
   },
+  type,
 }) {
   const [previewUrl, setPreviewUrl] = useState(contact?.photo || null);
   const [form, setForm] = useState(contact);
@@ -157,7 +158,7 @@ export default function FormContact({
           type="submit"
           className="rounded bg-slate-800 px-4 py-2 text-white"
         >
-          Ajouter
+          {type}
         </button>
       </form>
     </div>

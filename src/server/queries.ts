@@ -30,6 +30,20 @@ export async function getContactById(id: string) {
   return res2;
 }
 
+export async function addContact(myContact: Contact){
+  await db.insert(contact).values(myContact);
+}
+
+export type Contact = typeof contact.$inferInsert;
+
+export async function updateContact(myContact: Contact){
+  await db.update(contact).set(myContact).where(eq(contact.id, myContact.id));
+}
+
+export async function deleteContact(id: string){
+  await db.delete(contact).where(eq(contact.id, id));
+}
+
 export async function getActivites() {
   const activites = await db.query.activite.findMany();
   return activites;

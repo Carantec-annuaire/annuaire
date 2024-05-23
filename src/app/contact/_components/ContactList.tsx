@@ -40,7 +40,7 @@ export default function ContactList({ contacts }: any) {
         >
           <div className="relative mr-2 h-16 w-16">
             <Image
-              src={contact.photo}
+              src={contact.photo ? contact.photo : "/placeholder.svg"}
               alt={`${contact.prenom} ${contact.nom}`}
               sizes="64px"
               priority={true}

@@ -17,7 +17,7 @@ export default async function ContactPage() {
         return "https://lh3.googleusercontent.com/d/" + match[1];
       }
     }
-    return "/placeholder.svg";
+    return contact.photo;
   }
 
   return (

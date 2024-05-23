@@ -5,6 +5,9 @@ import { addContact, Contact } from "~/server/queries";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 import path from "path";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
 // Omit the id field from the Contact type and set the photo field to be a File type.
 // This will allow us to upload a photo for the contact.
 type ClientContact = Omit<Contact, "id"> & { photo: File };
@@ -38,6 +41,9 @@ export default async function page() {
       photo: `/images/${photoFilename}`,
       id: uuidv4(),
     });
+
+    revalidatePath("/contacts");
+    redirect("/contacts");
   }
 
   return (
@@ -47,7 +53,7 @@ export default async function page() {
         <h1 className="text-center text-2xl font-bold ">Ajouter un contact</h1>
         <div className="h-12 w-12"></div>
       </div>
-      <FormContact handleSubmit={handleSubmit} />
+      <FormContact handleSubmit={handleSubmit} type="Ajouter" />
     </>
   );
 }
