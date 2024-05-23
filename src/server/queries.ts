@@ -2,9 +2,11 @@ import "server-only";
 import { db } from "./db";
 import { contact } from "./db/schema";
 import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
+
 
 export async function getContacts() {
-  const contacts = await db.query.contact.findMany();
+  const contacts = await db.query.contact.findMany() as typeof contact.$inferInsert[];
   return contacts;
 }
 
@@ -21,7 +23,13 @@ export async function getContactById(id: string) {
         return "https://lh3.googleusercontent.com/d/" + match[1];
       }
     }
-    return "/placeholder.svg";
+    return contact.photo;
   }
   return res2;
+}
+
+export type Contact = typeof contact.$inferInsert;
+
+export async function addContact(mycontact: Contact){
+  await db.insert(contact).values(mycontact);
 }

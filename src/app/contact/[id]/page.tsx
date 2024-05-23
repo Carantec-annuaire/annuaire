@@ -14,6 +14,7 @@ export default async function Page({
   //console.log(id);
   //const params = useParams() as { id: string };
   const contact = await getContactById(id);
+  console.log(contact);
 
   if (!contact) {
     redirect("/contact");
