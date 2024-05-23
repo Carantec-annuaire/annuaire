@@ -7,7 +7,10 @@ export default async function AddContact() {
           "use server";
         }}
       >
-        <input type="file" name="photo" />
+        <div>
+          <label></label>
+          <input type="file" name="photo" />
+        </div>
         <input type="text" name="prenom" placeholder="Prénom" />
         <input type="text" name="nom" placeholder="Nom" />
         <input type="text" name="fonction" placeholder="Fonction" />
