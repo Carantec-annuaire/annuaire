@@ -5,18 +5,18 @@ import { useRouter } from "next/navigation";
 import { ChevronRight, Search } from "lucide-react";
 
 export default function ActivityList({ activites }: any) {
-    //console.log;
-    const [search, setSearch] = useState("");
-    activites = activites.filter((activite: any) => {
-      return (
-        activite.nom.toLowerCase().includes(search.toLowerCase()) ||
-        activite.domaine.toLowerCase().includes(search.toLowerCase()) ||
-        activite.activite.toLowerCase().includes(search.toLowerCase()) ||
-        activite.ville?.toLowerCase().includes(search.toLowerCase())
-      );
-    });
+  //console.log;
+  const [search, setSearch] = useState("");
+  activites = activites.filter((activite: any) => {
+    return (
+      activite.nom.toLowerCase().includes(search.toLowerCase()) ||
+      activite.domaine.toLowerCase().includes(search.toLowerCase()) ||
+      activite.activite.toLowerCase().includes(search.toLowerCase()) ||
+      activite.ville?.toLowerCase().includes(search.toLowerCase())
+    );
+  });
 
-    const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center gap-y-1 p-2">
@@ -53,12 +53,8 @@ export default function ActivityList({ activites }: any) {
             />
           </div>
           <div className="flex flex-col items-start">
-            <span className="font-semibold">
-              {activite.nom}
-            </span>
-            <span className="uppercase text-slate-600">
-              {activite.ville}
-            </span>
+            <span className="font-semibold">{activite.nom}</span>
+            <span className="uppercase text-slate-600">{activite.ville}</span>
           </div>
           <div className="ml-auto p-2 font-medium">
             <ChevronRight />

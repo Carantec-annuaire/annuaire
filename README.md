@@ -19,7 +19,7 @@ Le but de cette application est de fournir un annuaire au service Jeunesse de Ca
 
 - [ ] Relation entre contact et structure
 - [ ] System de recherche pour les activités
-- [ ] Essayer de fix la carte
+- [ ] La carte
 
 ---
 

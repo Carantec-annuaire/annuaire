@@ -27,7 +27,6 @@ export default async function Page({
         <h1 className="text-center text-2xl font-bold ">{partenaire.nom}</h1>
         <EditButton path={"/partner/edit/" + id} />
       </div>
-
       <div className="flex flex-col items-start gap-y-1 p-2">
         <div className="relative flex aspect-square w-1/2 self-center p-2">
           <Image
@@ -59,9 +58,6 @@ export default async function Page({
             {partenaire.site} <ArrowUpRight className="mb-2 h-4 w-4" />
           </a>
         )}
-
-        {/* <div className="mt-4">{partenaire.contact}</div> */}
-        {/* agences */}
       </div>
     </>
   );
