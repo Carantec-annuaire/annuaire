@@ -1,4 +1,5 @@
 import "~/styles/globals.css";
+import 'leaflet/dist/leaflet.css';
 
 import { GeistSans } from "geist/font/sans";
 import Link from "next/link";
