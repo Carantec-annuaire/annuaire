@@ -17,17 +17,13 @@ Le but de cette application est de fournir un annuaire au service Jeunesse de Ca
 - Lancer l'application : [npm run dev]
 - Mettre en place les variables d'environnements
 
-- [x] Passer le site en mobile first
-- [ ] Faire 1 routes read
-- [ ] Rendre les trucs clicables
-- [ ] Faire 1 routes create
-- [ ] Faire 1 routes update
-- [ ] Relation ok entre contact et structure
-- [ ] Upload des images sur vercel blob
+- [ ] Relation entre contact et structure
+- [ ] System de recherche pour les activités
+- [ ] Essayer de fix la carte
 
----- Ok pour 1ere presentation ->
+---
 
-- [ ] Authentification page sign in -> trouver moyen de faire une ui fancy
-- [ ] Animation page
-- [ ] Faire la carte
+- [ ] Authentification page sign in
 - [ ] trouver un moyen fancy pour ajout de fonctionnalité si connecte ou non
+- [ ] map interactive
+- [ ] animations

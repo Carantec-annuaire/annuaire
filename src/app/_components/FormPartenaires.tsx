@@ -1,33 +1,67 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
+import React from "react";
+import { PlaceKit } from "@placekit/autocomplete-react";
+import "@placekit/autocomplete-js/dist/placekit-autocomplete.css";
+import { Partenaire } from "~/server/queries";
+import { handlePartenaireSubmit } from "~/server/actions";
 
-import { Contact } from "~/server/queries";
-import { handleContactSubmit, ClientContact } from "~/server/actions";
+type PartenaireClient = Omit<Partenaire, "id"> & {
+  photo?: File | string;
+  id?: string;
+};
 
-export default function FormContact({
-  contact = {
-    prenom: "",
+export default function FormPartenaires({
+  partenaire = {
+    id: "",
     nom: "",
-    fonction: "",
+    logo: "",
+    nomDetails: "",
+    contact: "",
     mail: "",
-    mobile: "",
-    fixe: "",
-    photo: "",
+    telephone: "",
+    ville: "",
+    site: "",
+    champsAction: "",
+    adresse: "",
+    lat: "",
+    lng: "",
   },
   type,
 }: {
-  contact?: ClientContact;
+  partenaire?: PartenaireClient;
   type: string;
 }) {
-  const [previewUrl, setPreviewUrl] = useState(contact?.photo || null);
-  const [form, setForm] = useState(contact);
+  const [previewUrl, setPreviewUrl] = useState(partenaire?.logo || null);
+  const [form, setForm] = useState(partenaire);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
+
+  const handlePick = useCallback((value, item) => {
+    setAddress(value); // Update the address state
+    setForm((prevForm) => ({
+      ...prevForm,
+      adresse: value,
+      lat: item.coordinates.lat,
+      lng: item.coordinates.lng,
+    }));
+
+    console.log(item);
+
+    setCity(item.city);
+    setForm((prevForm) => ({
+      ...prevForm,
+      ville: item.city,
+    }));
+  }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
-    setForm({ ...form, photo: file });
+    setForm({ ...form, logo: file });
   };
 
   const handleChange = (event) => {
@@ -40,7 +74,7 @@ export default function FormContact({
     Object.keys(form).forEach((key) => {
       formData.append(key, form[key]);
     });
-    await handleContactSubmit(formData);
+    await handlePartenaireSubmit(formData);
   };
 
   return (
@@ -68,24 +102,10 @@ export default function FormContact({
           <input
             id="file-input"
             type="file"
-            name="photo"
+            name="logo"
             accept="image/jpeg,image/png"
             className="hidden"
             onChange={handleFileChange}
-          />
-        </div>
-        <div className="flex flex-col">
-          <label htmlFor="prenom" className="text-sm">
-            Prénom
-          </label>
-          <input
-            type="text"
-            name="prenom"
-            value={form.prenom}
-            onChange={handleChange}
-            placeholder="Prénom"
-            className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
-            required
           />
         </div>
         <div className="flex flex-col">
@@ -103,15 +123,29 @@ export default function FormContact({
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="fonction" className="text-sm">
-            Fonction
+          <label htmlFor="nomDetails" className="text-sm">
+            Nom Details
           </label>
           <input
             type="text"
-            name="fonction"
-            value={form.fonction}
+            name="nomDetails"
+            value={form.nomDetails}
             onChange={handleChange}
-            placeholder="Fonction"
+            placeholder="Nom Details"
+            className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
+            required
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="contact" className="text-sm">
+            Contact
+          </label>
+          <input
+            type="text"
+            name="contact"
+            value={form.contact}
+            onChange={handleChange}
+            placeholder="Contact"
             className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
             required
           />
@@ -131,29 +165,64 @@ export default function FormContact({
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="mobile" className="text-sm">
-            Mobile
+          <label htmlFor="telephone" className="text-sm">
+            Téléphone
           </label>
           <input
             type="tel"
-            name="mobile"
-            value={form.mobile}
+            name="telephone"
+            value={form.telephone}
             onChange={handleChange}
-            placeholder="Mobile"
+            placeholder="Téléphone"
             className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
+            required
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="fixe" className="text-sm">
-            Fixe
+          <label htmlFor="site" className="text-sm">
+            Site
           </label>
           <input
-            type="tel"
-            name="fixe"
-            value={form.fixe}
+            type="url"
+            name="site"
+            value={form.site}
             onChange={handleChange}
-            placeholder="Fixe"
+            placeholder="Site"
             className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
+            required
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="champsAction" className="text-sm">
+            Champs d'Action
+          </label>
+          <input
+            type="text"
+            name="champsAction"
+            value={form.champsAction}
+            onChange={handleChange}
+            placeholder="Champs d'Action"
+            className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
+            required
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="adresse" className="text-sm">
+            Adresse
+          </label>
+          <PlaceKit
+            apiKey="pk_3Jd3rlb93CBJjHWGJzXXhocNfYIcWBqlGqoRf6s+V2s=" // replace with your actual API key
+            id="address"
+            name="address"
+            defaultValue={`${form.adresse} ${form.ville}`}
+            placeholder="Search places..."
+            className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-2 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] outline-none"
+            options={{
+              maxResults: 5,
+              types: ["street", "city"],
+              countries: ["fr"], // set this to the countries you need
+            }}
+            onPick={handlePick} // Event handler to capture selected address
           />
         </div>
         <button

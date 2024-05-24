@@ -24,10 +24,8 @@ export default async function Page({
     <>
       <div className="flex flex-row items-end justify-between p-2">
         <BackButton />
-        <h1 className="text-center text-2xl font-bold ">
-          {activite.nom}
-        </h1>
-        <EditButton path={"/activity/" + id} />
+        <h1 className="text-center text-2xl font-bold ">{activite.nom}</h1>
+        <EditButton path={"/activity/edit/" + id} />
       </div>
 
       <div className="flex flex-col items-start gap-y-1 p-2">
@@ -45,18 +43,22 @@ export default async function Page({
         <div className="self-center text-xl text-slate-600">
           {activite.activite}
         </div>
-        <div className="text-xl text-slate-600">
-        {activite.ville}</div>
-        <div className="text-xl text-slate-600 mb-4">
-        {activite.domaine}</div>
-        
+        <div className="text-xl text-slate-600">{activite.ville}</div>
+        <div className="mb-4 text-xl text-slate-600">{activite.domaine}</div>
+
         {activite.mail && <Email email={activite.mail} />}
         {activite.telephone && <Phone phone={activite.telephone} />}
-        
-      {activite.site && (
-        <a href={activite.site} target="_blank" rel="noopener noreferrer" className="flex items-center">{activite.site} <ArrowUpRight className="h-4 w-4 mb-2"/></a>
+
+        {activite.site && (
+          <a
+            href={activite.site}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            {activite.site} <ArrowUpRight className="mb-2 h-4 w-4" />
+          </a>
         )}
-    
 
         <div className="mt-4">{activite.commentaire}</div>
         {/* agences */}

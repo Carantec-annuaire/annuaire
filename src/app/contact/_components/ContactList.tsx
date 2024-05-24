@@ -17,6 +17,10 @@ export default function ContactList({ contacts }: any) {
 
   const router = useRouter();
 
+  const sortedContactsByName = contacts.sort((a: any, b: any) => {
+    return a.prenom.localeCompare(b.prenom);
+  });
+
   return (
     <div className="flex flex-col items-center gap-y-1 p-2">
       <div className="mb-2 flex w-full flex-row space-x-1 rounded bg-slate-200 p-1 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)]">
@@ -30,7 +34,7 @@ export default function ContactList({ contacts }: any) {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      {contacts.map((contact: any) => (
+      {sortedContactsByName.map((contact: any) => (
         <button
           key={contact.id}
           className="flex w-full flex-row items-center rounded-md border border-slate-200 bg-slate-200 p-1 text-slate-800 shadow-[0_1px_1px_0_rgba(71,85,105,0.37)] duration-150 ease-in-out hover:bg-slate-100"
@@ -40,7 +44,11 @@ export default function ContactList({ contacts }: any) {
         >
           <div className="relative mr-2 h-16 w-16">
             <Image
-              src={contact.photo ? contact.photo : "/placeholder.svg"}
+              src={
+                contact.photo && contact.photo !== "null"
+                  ? contact.photo
+                  : "/placeholder.svg"
+              }
               alt={`${contact.prenom} ${contact.nom}`}
               sizes="64px"
               priority={true}
