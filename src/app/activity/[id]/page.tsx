@@ -6,6 +6,7 @@ import Email from "~/app/_components/Email";
 import EditButton from "~/app/_components/EditButton";
 import Phone from "~/app/_components/Phone";
 import { ArrowUpRight } from "lucide-react";
+import Site from "~/app/_components/Site";
 
 export default async function Page({
   params: { id },
@@ -49,16 +50,7 @@ export default async function Page({
         {activite.mail && <Email email={activite.mail} />}
         {activite.telephone && <Phone phone={activite.telephone} />}
 
-        {activite.site && (
-          <a
-            href={activite.site}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center"
-          >
-            {activite.site} <ArrowUpRight className="mb-2 h-4 w-4" />
-          </a>
-        )}
+        {activite.site && <Site url={activite.site} />}
 
         <div className="mt-4">{activite.commentaire}</div>
         {/* agences */}
