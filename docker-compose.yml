@@ -1,0 +1,37 @@
+services:
+  # PostgreSQL service
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data2:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  #    networks:
+  #      - app-network
+
+  # Next.js application
+#   nextjs:
+#     container_name: nextjs
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - nextjs_images:/app/public/images
+#     depends_on:
+#       - postgres
+# # #    networks:
+# # #      - app-network
+
+volumes:
+  postgres_data2:
+  nextjs_images:
+#networks:
+#  app-network:

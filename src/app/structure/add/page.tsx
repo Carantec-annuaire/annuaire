@@ -1,6 +1,5 @@
 "use server";
 import BackButton from "~/app/_components/BackButton";
-import FormParenaires from "~/app/_components/FormPartenaires";
 import FormStructure from "~/app/_components/FormStructure";
 
 export default async function page() {
@@ -11,7 +10,7 @@ export default async function page() {
         <h1 className="text-center text-2xl font-bold ">Ajouter un contact</h1>
         <div className="h-12 w-12"></div>
       </div>
-      <FormParenaires type="Ajouter" />
+      <FormStructure type="Ajouter" />
     </>
   );
 }

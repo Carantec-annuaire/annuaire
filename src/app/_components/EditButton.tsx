@@ -6,7 +6,7 @@ const EditButton = ({ path }: { path: string }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`${path}/edit`);
+    router.push(`${path}`);
   };
 
   return (

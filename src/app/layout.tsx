@@ -21,6 +21,12 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} no-scrollbar text-slate-800`}
     >
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/places.js@1.19.0/dist/cdn/places.min.css"
+        />
+      </head>
       <body className="bg-slate-100">
         <nav className="fixed bottom-0 z-10 flex w-full flex-row justify-center bg-slate-100 p-2 shadow-[0_-1px_1px_0_rgba(71,85,105,0.37)]">
           <Link className="flex flex-row items-center " href="/contact">

@@ -23,6 +23,8 @@ const config = {
     "@typescript-eslint/prefer-optional-chain": "off", // Disable
     "@next/next/no-img-element": "off", // Disable
     "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "prefer-const": "warn",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/consistent-type-imports": [
       "warn",

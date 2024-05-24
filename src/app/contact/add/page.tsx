@@ -1,24 +1,16 @@
-export default async function AddContact() {
+"use server";
+import BackButton from "~/app/_components/BackButton";
+import FormContact from "~/app/_components/FormContact";
+
+export default async function page() {
   return (
     <>
-      <form
-        className="flex flex-col space-y-1"
-        action={async (formaData: FormData) => {
-          "use server";
-        }}
-      >
-        <div>
-          <label></label>
-          <input type="file" name="photo" />
-        </div>
-        <input type="text" name="prenom" placeholder="Prénom" />
-        <input type="text" name="nom" placeholder="Nom" />
-        <input type="text" name="fonction" placeholder="Fonction" />
-        <input type="email" name="mail" placeholder="Email" />
-        <input type="tel" name="mobile" placeholder="Mobile" />
-        <input type="tel" name="fixe" placeholder="Fixe" />
-        <button type="submit">Ajouter</button>
-      </form>
+      <div className="flex flex-row items-center justify-between p-2">
+        <BackButton />
+        <h1 className="text-center text-2xl font-bold ">Ajouter un contact</h1>
+        <div className="h-12 w-12"></div>
+      </div>
+      <FormContact type="Ajouter" />
     </>
   );
 }
