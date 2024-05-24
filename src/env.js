@@ -23,7 +23,6 @@ export const env = createEnv({
       process.env.VERCEL ? z.string() : z.string().url()
     ),
     POSTGRES_URL: z.string(),
-    OPENCAGEDATA_API_KEY: z.string(),
     //DISCORD_CLIENT_SECRET: z.string(),
   },
 
@@ -46,7 +45,6 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     POSTGRES_URL: process.env.POSTGRES_URL,
-    OPENCAGEDATA_API_KEY: process.env.OPENCAGEDATA_API_KEY,
     //DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     //DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
   },
